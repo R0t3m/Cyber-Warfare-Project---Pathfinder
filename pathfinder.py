@@ -729,7 +729,44 @@ def render_risk_meter_panel(risk):
         <div class="stat-grid" style="margin-top:16px;">{stat_boxes}</div>
     </div>
     """
- 
+def render_network_info_section(data):
+    net = data.get("network_info", {})
+    if not net:
+        return ""
+
+    if data["target_os"] == "Linux":
+        blocks = [
+            ("Interfaces", net.get("interfaces")),
+            ("Routes", net.get("routes")),
+            ("Listening Ports", net.get("listening_ports")),
+            ("DNS", net.get("DNS"))
+        ]
+    else:
+        blocks = [
+            ("IP Configuration", net.get("ip_config")),
+            ("Routes", net.get("routes")),
+            ("Listening Ports", net.get("listening_ports"))
+        ]
+
+    cards = ""
+
+    for label, content in blocks:
+        if content:
+            cards += f"""
+            <div class="card">
+                <div class="card-header"><h4>{esc(label)}</h4></div>
+                <div class="evidence">{esc(content)}</div>
+            </div>
+            """
+
+    return f"""
+    <section>
+        <h2 class="section-title"><span class="dot"></span>Network Configuration</h2>
+        <p class="section-sub">Raw network data collected from the target during enumeration.</p>
+        {cards}
+    </section>
+    """
+	
 def render_finding_card(finding):
     sev_class = f"sev-{finding['severity'].lower()}"
     return f"""
@@ -810,6 +847,7 @@ def generate_html_report(data, findings, recommendations, risk, output_path,
     </div>
  
     <div class="main-content">
+        {render_network_info_section(data)}
         <section>
             <h2 class="section-title"><span class="dot"></span>Findings</h2>
             <p class="section-sub">Security-relevant facts discovered during the assessment, ordered by severity.</p>
