@@ -208,7 +208,7 @@ def windows_run_command(command): # a function to run windows commands
             command,
             capture_output=True,
             text=True,
-            encoding="utf-8",
+            encoding="oem",
             errors="replace",
             timeout=15,
             shell=True
