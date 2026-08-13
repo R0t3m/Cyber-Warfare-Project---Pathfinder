@@ -48,14 +48,6 @@ After initial access, an operator has to manually run dozens of commands to unde
 4. **Assessment** — runs collected data through the security checks above, producing structured findings sorted by severity.
 5. **Report generation** — renders findings and recommendations into a single HTML report.
 
-## Sample Output
-
-| Windows | Linux |
-|---|---|
-| ![Windows report example](docs/windows-example.png) | ![Linux report example](docs/linux-example.png) |
-
-*(Update paths above once screenshots are added to a `docs/` folder in the repo.)*
-
 ## Disclaimer
 
 This tool is intended for use in authorized penetration testing, red team engagements, and educational lab environments only. Running enumeration tools against systems without explicit authorization is illegal. The author is not responsible for misuse of this tool.
