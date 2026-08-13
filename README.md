@@ -54,4 +54,4 @@ This tool is intended for use in authorized penetration testing, red team engage
 
 ## Author
 
-Built by Rotem Bacal as a Cyber Warfare course project.
+Built by Rotem Bacal for ThinkCyber LTD's Cyber Warfare module project.
